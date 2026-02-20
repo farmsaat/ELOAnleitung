@@ -1,0 +1,308 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>ELO DMS – Ausgangsrechnungen</title>
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&display=swap');
+
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      font-family: 'Inter', Arial, sans-serif;
+      background: #f4f4f4;
+      color: #2c2c2c;
+      padding: 30px 20px;
+    }
+
+    .page {
+      max-width: 780px;
+      margin: 0 auto;
+      background: #ffffff;
+      border-radius: 16px;
+      overflow: hidden;
+      box-shadow: 0 4px 24px rgba(0,0,0,0.10);
+    }
+
+    /* HEADER */
+    .header {
+      background: #ffd632;
+      padding: 32px 40px 24px 40px;
+      display: flex;
+      align-items: center;
+      gap: 20px;
+      border-bottom: 6px solid #83b624;
+    }
+
+    .header-icon {
+      font-size: 48px;
+      line-height: 1;
+    }
+
+    .header-text h1 {
+      font-size: 22px;
+      font-weight: 800;
+      color: #2c2c2c;
+      line-height: 1.2;
+    }
+
+    .header-text p {
+      font-size: 13px;
+      color: #555;
+      margin-top: 4px;
+    }
+
+    .badge {
+      margin-left: auto;
+      background: #83b624;
+      color: #fff;
+      font-size: 11px;
+      font-weight: 700;
+      padding: 6px 14px;
+      border-radius: 20px;
+      white-space: nowrap;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+    }
+
+    /* SECTION TITLES */
+    .section {
+      padding: 28px 40px;
+    }
+
+    .section-title {
+      font-size: 13px;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      color: #83b624;
+      margin-bottom: 18px;
+    }
+
+    /* STEPS */
+    .steps {
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+    }
+
+    .step {
+      display: flex;
+      align-items: flex-start;
+      gap: 16px;
+      background: #fafafa;
+      border: 1.5px solid #ececec;
+      border-radius: 12px;
+      padding: 18px 20px;
+      transition: border-color 0.2s;
+    }
+
+    .step-number {
+      min-width: 42px;
+      height: 42px;
+      border-radius: 50%;
+      background: #ffd632;
+      color: #2c2c2c;
+      font-size: 18px;
+      font-weight: 800;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+      box-shadow: 0 2px 6px rgba(255,214,50,0.4);
+    }
+
+    .step-content h3 {
+      font-size: 15px;
+      font-weight: 700;
+      color: #2c2c2c;
+      margin-bottom: 4px;
+    }
+
+    .step-content p {
+      font-size: 13px;
+      color: #555;
+      line-height: 1.6;
+    }
+
+    .step-content .url-box {
+      margin-top: 8px;
+      background: #f0f0f0;
+      border-left: 4px solid #ffd632;
+      padding: 8px 12px;
+      border-radius: 0 6px 6px 0;
+      font-family: 'Courier New', monospace;
+      font-size: 12px;
+      color: #333;
+      word-break: break-all;
+    }
+
+    .step-icon {
+      font-size: 22px;
+      margin-right: 2px;
+    }
+
+    /* DIVIDER */
+    .divider {
+      height: 1px;
+      background: #ececec;
+      margin: 0 40px;
+    }
+
+    /* SEARCH SECTION */
+    .search-box {
+      background: #f7fdf0;
+      border: 1.5px solid #83b624;
+      border-radius: 12px;
+      padding: 20px 24px;
+    }
+
+    .search-box h3 {
+      font-size: 15px;
+      font-weight: 700;
+      color: #2c2c2c;
+      margin-bottom: 12px;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .search-box p {
+      font-size: 13px;
+      color: #555;
+      line-height: 1.6;
+      margin-bottom: 12px;
+    }
+
+    .tags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      margin-top: 4px;
+    }
+
+    .tag {
+      background: #83b624;
+      color: #fff;
+      font-size: 12px;
+      font-weight: 600;
+      padding: 5px 12px;
+      border-radius: 20px;
+    }
+
+    /* HINT BOX */
+    .hint {
+      background: #fffbea;
+      border: 1.5px solid #ffd632;
+      border-radius: 10px;
+      padding: 14px 18px;
+      font-size: 13px;
+      color: #555;
+      margin-top: 14px;
+      display: flex;
+      gap: 10px;
+      align-items: flex-start;
+      line-height: 1.6;
+    }
+
+    .hint-icon { font-size: 18px; flex-shrink: 0; }
+
+    /* FOOTER */
+    .footer {
+      background: #2c2c2c;
+      color: #aaa;
+      font-size: 11px;
+      text-align: center;
+      padding: 14px 40px;
+      letter-spacing: 0.3px;
+    }
+
+    .footer span {
+      color: #ffd632;
+      font-weight: 700;
+    }
+
+    /* Print */
+    @media print {
+      body { background: white; padding: 0; }
+      .page { box-shadow: none; border-radius: 0; }
+    }
+  </style>
+</head>
+<body>
+<div class="page">
+
+  <!-- HEADER -->
+  <div class="header">
+    <div class="header-icon">📄</div>
+    <div class="header-text">
+      <h1>Ausgangsrechnungen im ELO</h1>
+      <p>Kurzanleitung für den Zugriff und die Ausgangsrechnungen</p>
+    </div>
+    <div class="badge">farmsaat</div>
+  </div>
+
+  <!-- STEPS SECTION -->
+  <div class="section">
+    <div class="section-title">🔐 Schritt-für-Schritt: So verbindest du dich</div>
+    <div class="steps">
+
+      <div class="step">
+        <div class="step-number">1</div>
+        <div class="step-content">
+          <h3><span class="step-icon">🔒</span> VPN einschalten</h3>
+          <p>Verbinde dich zunächst mit dem VPN – genauso wie du es beim Zugriff auf den <strong>VertriebsHub</strong> machst. Ohne VPN ist ELO nicht erreichbar.</p>
+        </div>
+      </div>
+
+      <div class="step">
+        <div class="step-number">2</div>
+        <div class="step-content">
+          <h3><span class="step-icon">🌐</span> ELO im Browser öffnen</h3>
+          <p>Öffne einen beliebigen Browser (z.&nbsp;B. Chrome, Edge oder Firefox) und gib folgende Adresse in die Adressleiste ein:</p>
+          <div class="url-box">http://2024dms:9090/ix-farmsaat/plugin/de.elo.ix.plugin.proxy/web/</div>
+        </div>
+      </div>
+
+      <div class="step">
+        <div class="step-number">3</div>
+        <div class="step-content">
+          <h3><span class="step-icon">👤</span> Mit Windows-Anmeldedaten einloggen</h3>
+          <p>Melde dich mit deinem <strong>Windows-Benutzernamen und Passwort</strong> an – dieselben Zugangsdaten, die du auch für deinen PC, Word oder OneDrive nutzt. Hier kannst du auch die Sprache wechseln.</p>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <div class="divider"></div>
+
+  <!-- SEARCH SECTION -->
+  <div class="section">
+    <div class="section-title">🔎 Suche in ELO – So findest du Rechnungen</div>
+    <div class="search-box">
+      <h3>🔎 Die Suche (Lupe) verwenden</h3>
+      <p>
+        Klicke in ELO auf das <strong>Lupensymbol</strong> oben in der Menüleiste oder bei den Kacheln im Hauptmenü, um die Suche zu öffnen. Du kannst nach allem suchen, was auf einer Rechnungs-PDF steht – ganz einfach mit einem Stichwort.
+      </p>
+      <p><strong>Beispiele für Suchbegriffe:</strong></p>
+      <div class="tags">
+        <span class="tag">👤 Kundenname</span>
+        <span class="tag">🔢 Rechnungsnummer</span>
+        <span class="tag">📦 Artikelnummer</span>
+        <span class="tag">📅 Datum</span>
+        <span class="tag">💶 Betrag</span>
+        <span class="tag">📝 Beliebiger Text</span>
+      </div>
+    </div>
+
+    <div class="hint">
+      <span class="hint-icon">💡</span>
+      <span><strong>Tipp:</strong> Die Suche durchsucht den gesamten Inhalt der Rechnungs-PDFs. Du musst keine genaue Schreibweise kennen – ein Teil des Namens oder der Nummer reicht oft aus. Dann musst du aber ein Sternchen * nutzen. Zum Beispiel statt "Gummersbach": "gummer*", um alle Rechnungen zu finden, die ein Wort das mit "gummer" anfängt beinhalten.</span>
+    </div>
+  </div>
+
+</div>
+</body>
+</html>
